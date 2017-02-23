@@ -38,6 +38,7 @@ RUN    adduser -D -u 1000 -g 'www' www && \
        sed -i "s|;listen.mode\s*=\s*0660|listen.mode = ${PHP_FPM_LISTEN_MODE}|g" /etc/php5/php-fpm.conf && \
        sed -i "s|user\s*=\s*nobody|user = ${PHP_FPM_USER}|g" /etc/php5/php-fpm.conf && \
        sed -i "s|group\s*=\s*nobody|group = ${PHP_FPM_GROUP}|g" /etc/php5/php-fpm.conf && \
+       sed -i "s|listen\s*=\s*127.0.0.1:9000|listen = /var/run/php5-fpm.socket|" /etc/php5/php-fpm.conf && \
        sed -i "s|user\s*nginx|user       ${PHP_FPM_USER}|g" /etc/nginx/nginx.conf && \
        rc-update add nginx default && \
        rc-update add php-fpm default
